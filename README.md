@@ -1,5 +1,7 @@
 # cangchu-admin · 海外仓储管理后台
 
+接手项目先读 [统一交接文件](https://github.com/jiangyi3265/cangchu-warehouse/blob/main/docs/HANDOFF.md)。本站已于 2026-11-16（America/New_York）切换到本若依前端和 Java 后端，使用用户确认的空白业务库；[部署文档](https://github.com/jiangyi3265/cangchu-warehouse/blob/main/docs/DEPLOYMENT.md) 记录当前发布和运维位置，密码另行私密交接。
+
 基于若依 Vue 3 的仓储管理前端，为仓库和财务人员提供日常业务操作界面。
 
 ## 项目简介
