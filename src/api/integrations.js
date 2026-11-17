@@ -1,0 +1,17 @@
+import request from '@/utils/request'
+const base='/warehouse/integrations', part=value=>encodeURIComponent(String(value))
+export const integrationCapabilities=()=>request({url:base+'/capabilities'})
+export const integrationConnections=()=>request({url:base})
+export const integrationConnection=id=>request({url:base+'/'+part(id)})
+// RuoYi's duplicate-submit cache must never retain credentials in sessionStorage.
+export const saveIntegration=(id,data)=>request({url:base+(id?'/'+part(id):''),method:id?'put':'post',data,headers:{repeatSubmit:false}})
+export const pullIntegration=(id,data)=>request({url:base+'/'+part(id)+'/pull',method:'post',data,timeout:60000,headers:{repeatSubmit:false}})
+export const integrationJobs=(id,params)=>request({url:base+'/'+part(id)+'/jobs',params})
+export const integrationInbox=(id,params)=>request({url:base+'/'+part(id)+'/inbox',params})
+export const integrationInboxDetail=(id,item)=>request({url:base+'/'+part(id)+'/inbox/'+part(item)})
+export const integrationAcceptanceSettings=(id,item)=>request({url:base+'/'+part(id)+'/acceptance-settings',params:item?{item}:undefined})
+export const saveIntegrationAuthority=(id,data)=>request({url:base+'/'+part(id)+'/authority',method:'put',data,headers:{repeatSubmit:false}})
+export const saveIntegrationMapping=(id,data)=>request({url:base+'/'+part(id)+'/mapping',method:'put',data,headers:{repeatSubmit:false}})
+export const reviewIntegrationOrder=(id,item)=>request({url:base+'/'+part(id)+'/inbox/'+part(item)+'/review',method:'post',timeout:60000,headers:{repeatSubmit:false}})
+export const acceptIntegrationOrder=(id,item,data)=>request({url:base+'/'+part(id)+'/inbox/'+part(item)+'/accept',method:'post',data,timeout:60000,headers:{repeatSubmit:false}})
+export const resolveIntegrationRequest=(id,data)=>request({url:base+'/'+part(id)+'/resolve',method:'post',data,headers:{repeatSubmit:false}})
